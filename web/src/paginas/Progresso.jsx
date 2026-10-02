@@ -108,7 +108,10 @@ export default function Progresso() {
           </span>
           {r && r.proximasRevisoes.length === 0 && (
             <p className="discreto">
-              Quando um tema tiver {ACERTOS_PARA_FEITO} acertos, ele entra aqui. <Link to="/praticar">Praticar →</Link>
+              {nHoje > 0
+                ? 'Depois de revisar, a próxima data de cada tema aparece aqui.'
+                : `Quando um tema tiver ${ACERTOS_PARA_FEITO} acertos, ele entra aqui. `}
+              {nHoje === 0 && <Link to="/praticar">Praticar →</Link>}
             </p>
           )}
           {r?.proximasRevisoes.map((c) => (
