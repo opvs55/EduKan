@@ -1,0 +1,20 @@
+{
+  "name": "edukan",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "conteudo",
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w web",
+    "dev:api": "npm run dev -w api",
+    "build": "npm run build -w web",
+    "test": "npm test -w conteudo && npm test -w api && npm test -w web",
+    "test:e2e": "npm run test:e2e -w web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
