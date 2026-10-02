@@ -1,0 +1,31 @@
+# Blueprint do Render para a API (Render → New → Blueprint → este repositório).
+# Os valores secretos (sync: false) são pedidos pelo painel; nunca vão para o git.
+services:
+  - type: web
+    name: edukan-api
+    runtime: node
+    plan: starter # US$ 7/mês: não dorme (o plano grátis dorme e responde 502)
+    region: oregon
+    buildCommand: npm ci --workspace api --include-workspace-root
+    startCommand: npm start --workspace api
+    healthCheckPath: /api/v1/saude
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: OPS_TOKEN
+        generateValue: true
+      - key: TRUST_CF_CONNECTING_IP
+        value: "true"
